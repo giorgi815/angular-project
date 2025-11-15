@@ -1,0 +1,21 @@
+<div class="signup">
+  <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+  <input formControlName="firstName" placeholder="First Name" />
+  <input formControlName="lastName" placeholder="Last Name" />
+  <input formControlName="age" type="number" placeholder="Age" />
+  <input formControlName="email" type="email" placeholder="Email"  required="email"/>
+  <input formControlName="password" type="password" placeholder="Password" />
+  <input formControlName="address" placeholder="Address" />
+  <input formControlName="phone" placeholder="Phone" />
+  <input formControlName="zipcode" placeholder="Zipcode" />
+  <input formControlName="avatar" placeholder="Avatar URL" />
+  
+  <select formControlName="gender">
+    <option value="MALE">Male</option>
+    <option value="FEMALE">Female</option>
+    <option value="OTHER">Other</option>
+  </select>
+
+  <button type="submit">Sign Up</button>
+</form>
+</div>
