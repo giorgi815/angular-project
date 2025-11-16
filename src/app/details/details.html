@@ -1,1 +1,23 @@
-<p>details works!</p>
+<div class="container">
+  <div class="card" style="width: 18rem;">
+  <img [src]="productId.thumbnail" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">{{productId.brand}}</h5>
+    <p class="card-text">{{productId.category.name}}</p>
+    <p>{{productId.description}}</p>
+    <p>{{productId.issueDate}}</p>
+    <p>{{productId.price.beforeDiscount}}
+      {{productId.price.current}}
+      {{productId.price.currency}}
+      {{productId.price.discountPercentage}}
+    </p>
+    <p>{{productId.rating}}</p>
+    <p  *ngFor="let el of productId.ratings">{{el.value}}</p>
+    <p>{{productId.stock}}</p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div>
+</div>

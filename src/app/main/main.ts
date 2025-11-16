@@ -18,8 +18,7 @@ export class Main {
     this.api.getAll("https://api.everrest.educata.dev/shop/products/all?page_index=1&page_size=10")
     .subscribe((resp: any) => {
       console.log(resp)
-      this.productArr= resp.products  
-      
+      this.productArr= resp.products
     })
   }
 
@@ -27,7 +26,6 @@ export class Main {
   
   goToDetails(id: string){
     this.router.navigateByUrl(`/details/${id}`)
-
   }
 
   productArr: Products[] =[]
