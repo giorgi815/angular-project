@@ -23,6 +23,10 @@ export const routes: Routes = [
     loadComponent : () => import("./signup/signupcomponent/signupcomponent").then(com => com.Signupcomponent)
   },
   {
+    path : "details/:id",
+    loadComponent : () => import("./details/details").then(com => com.Details)
+  },
+  {
    path : '**',
    component : Error
   },

@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 export class Services {
   constructor(private http: HttpClient) {}
 
-  private apiUrl = 'https://api.everrest.educata.dev/auth'
+  private apiUrl = 'https://api.everrest.educata.dev/auth/sign_up'
 
   login(email: string, password: string): Observable<any> {
     const params = new HttpParams()

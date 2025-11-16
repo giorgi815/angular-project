@@ -12,10 +12,10 @@ export class Login {
 
   constructor(private api : Services) { }
  
-  onLogin() {
-    this.api.login("https://api.everrest.educata.dev/auth").subscribe(data => 
-      console.log(data)
-    )
-  }
+  // onLogin() {
+  //   this.api.login("https://api.everrest.educata.dev/auth").subscribe(data => 
+  //     console.log(data)
+  //   )
+  // }
 
 }
