@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { SignupData } from '../signup';
+import { Services } from '../../apiservices/services';
 
 @Component({
   selector: 'app-signupcomponent',
@@ -11,11 +12,13 @@ import { SignupData } from '../signup';
 export class Signupcomponent {
   signupForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+
+
+  constructor(private fb: FormBuilder, private api: Services) {
     this.signupForm = this.fb.group({
       firstName : ['', Validators.required],
       lastName : ['',Validators.required],
-      age : [null, [Validators.required, Validators.min(16)]],
+      age : [null, [Validators.required, Validators.min(1)]],
       email : ['', [Validators.required, Validators.email]],
       password : ['', [Validators.required, Validators.minLength(6)]],
       address : [''],
@@ -26,10 +29,15 @@ export class Signupcomponent {
     });
   }
 
+
+
   onSubmit() {
     if (this.signupForm.valid) {
       const formData : SignupData = this.signupForm.value;
       console.log('Form submited', formData)
+      this.api.postObject('https://api.everrest.educata.dev/auth/sign_up',{
+         
+      })
     }
   }
 

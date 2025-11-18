@@ -18,6 +18,22 @@ export class Services {
     return this.http.get(this.apiUrl, { params })
   }
 
+  search<T = any>(filters : any): Observable<T>{
+  let params = new HttpParams
+
+  Object.keys(filters).forEach(key => {
+    if(
+      filters[key] !== null && 
+      filters[key] !== undefined && 
+      filters[key] !== ''
+    ){
+      params = params.set(key,filters[key])
+    }
+  })
+
+  return this.http.get<T>('https://api.everrest.educata.dev/shop/products/search', {params})
+}
+
   getAll(url : string) {
     return this.http.get(url)
   }

@@ -1,6 +1,25 @@
-<div class="hero">
 
-</div>
+<form>
+  <input [(ngModel)]="keywords" name="first" type="text" placeholder="keywords">
+  <input [(ngModel)]="categoryId" name="second" type="text" placeholder="category_id">
+  <input type="text" placeholder="brand">
+  <input type="number" placeholder="rating">
+  <input type="number" placeholder="price_min">
+  <input type="number" placeholder="price_max">
+  <select name="" id="">
+    <option value="" selected>--</option>
+    <option value="">rating</option>
+    <option value="">price</option>
+    <option value="">issue_date</option>
+    <option value="">title</option>
+  </select>
+  <select name="" id="">
+    <option value="" selected>--</option>
+    <option value="">asc</option>
+    <option value="">desc</option>
+  </select>
+  <button (click)="onSubmit()">search</button>
+</form>
 
 
 
@@ -10,12 +29,19 @@
   <img src="{{el.images}}" class="card-img-top" alt="...">
   <div class="card-body">
     <h5 class="card-title">{{el.brand}}</h5>
-    <p>{{el.description.split('\is')[0]}}</p>
-    <p>{{el.category.name}}</p>
-    <p>{{el.issueDate}}</p>
-    <p>{{el.price.current}}</p>
+    <p>{{el.price.current}}$</p>
     <p>{{el.stock}}</p>
     <a (click)="goToDetails(el._id)" class="btn btn-primary">Buy</a>
   </div>
 </div>
+  <nav aria-label="Page navigation example">
+  <ul class="pagination">
+    <li (click)="prevousPage()" class="page-item"><a class="page-link" >Previous</a></li>
+    <li (click)="onNumbers(1)" class="page-item"><a class="page-link" >1</a></li>
+    <li (click)="onNumbers(2)" class="page-item"><a class="page-link" >2</a></li>
+    <li (click)="onNumbers(3)" class="page-item"><a class="page-link" >3</a></li>
+    <li (click)="onNumbers(4)" class="page-item"><a class="page-link" >4</a></li>
+    <li class="page-item"><a class="page-link" (click)="nextPage()">Next</a></li>
+  </ul>
+</nav>
 </div>
