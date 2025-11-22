@@ -3,7 +3,15 @@
   <ul>
     <a routerLink="/main" >Home</a>
     <a routerLink="/cart" >Cart</a>
-    <a routerLink="/login" >Log In</a>
     <a routerLink="/signupcomponent" >Sign Up</a>
+    @if(!isAuth()){
+      <li>
+      <a routerLink="/login">Log in</a>
+    </li>
+    }
+    @if(isAuth()){
+      <button (click)="logout()">Log out</button>
+    }
+   
   </ul>
 </nav>

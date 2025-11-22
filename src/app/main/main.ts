@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { Router, RouterLink } from "@angular/router";
-import { Services } from '../apiservices/services';
 import { Products } from '../models/product';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ɵInternalFormsSharedModule } from "@angular/forms";
 import { SearchProducts } from '../models/search';
+import { Api } from '../services/apiservices';
 
 @Component({
   selector: 'app-main',
@@ -18,10 +18,10 @@ export class Main {
 
   search: SearchProducts[] = []
 
-  constructor(private api : Services, private router : Router){}
+  constructor(private api : Api, private router : Router){}
 
   pageIndex = 1
-
+  
   ngOnInit(){
     this.loadProducts()
   }
@@ -51,10 +51,11 @@ export class Main {
 
 
   onSubmit(){
-     this.api.getAll(`https://api.everrest.educata.dev/shop/products/search`).subscribe((resp: any) => {
-        console.log(this.productArr)
+     this.api.getAll(`https://api.everrest.educata.dev/shop/products/search?keywords=${this.keywords}&category_id=${this.categoryId}&brand=${this.brand}&rating=${this.rating}&price_min=${this.priceMin}&price_max=${this.priceMax}&sort_by=${this.sortBy}&sort_direction=${this.sortDirection}`).subscribe((resp : any) => {
+      
+        console.log(resp)
         this.productArr = resp.products
-
+        
     })
   }
 
@@ -64,8 +65,10 @@ export class Main {
   rating!: number;
   priceMin!: number;
   priceMax!: number;
+  sortBy!: string;
+  sortDirection!: string;
 
-  
+  options!: string
   
   
   goToDetails(id: string){

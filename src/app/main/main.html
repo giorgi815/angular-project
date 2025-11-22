@@ -1,25 +1,25 @@
 
-<form>
-  <input [(ngModel)]="keywords" name="first" type="text" placeholder="keywords">
-  <input [(ngModel)]="categoryId" name="second" type="text" placeholder="category_id">
-  <input type="text" placeholder="brand">
-  <input type="number" placeholder="rating">
-  <input type="number" placeholder="price_min">
-  <input type="number" placeholder="price_max">
-  <select name="" id="">
+
+  <input [(ngModel)]="keywords"  type="text" placeholder="keywords">
+  <input [(ngModel)]="categoryId"  type="text" placeholder="category_id">
+  <input [(ngModel)]="brand" type="text" placeholder="brand">
+  <input [(ngModel)]="rating" type="number" placeholder="rating">
+  <input [(ngModel)]="priceMin" type="number" placeholder="price_min">
+  <input [(ngModel)]="priceMax" type="number" placeholder="price_max">
+  <select [(ngModel)]="sortBy">
     <option value="" selected>--</option>
-    <option value="">rating</option>
-    <option value="">price</option>
-    <option value="">issue_date</option>
-    <option value="">title</option>
+    <option value="rating">rating</option>
+    <option value="price">price</option>
+    <option value="issue_date">issue_date</option>
+    <option value="title">title</option>
   </select>
-  <select name="" id="">
-    <option value="" selected>--</option>
-    <option value="">asc</option>
-    <option value="">desc</option>
+  <select [(ngModel)]="sortDirection">
+    <option value="--" selected>--</option>
+    <option value="asc">asc</option>
+    <option value="desc">desc</option>
   </select>
   <button (click)="onSubmit()">search</button>
-</form>
+
 
 
 
@@ -34,7 +34,8 @@
     <a (click)="goToDetails(el._id)" class="btn btn-primary">Buy</a>
   </div>
 </div>
-  <nav aria-label="Page navigation example">
+</div>
+<nav aria-label="Page navigation example">
   <ul class="pagination">
     <li (click)="prevousPage()" class="page-item"><a class="page-link" >Previous</a></li>
     <li (click)="onNumbers(1)" class="page-item"><a class="page-link" >1</a></li>
@@ -44,4 +45,3 @@
     <li class="page-item"><a class="page-link" (click)="nextPage()">Next</a></li>
   </ul>
 </nav>
-</div>

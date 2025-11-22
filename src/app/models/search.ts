@@ -5,16 +5,30 @@ export class SearchProducts {
   sortedBy!: string;
   sortedDirection!: string;
   skip!: number;
-  products!: Products[]
+  products!: Search[]
 }
 
-class Products {
+export class Products {
   price!: Price
 }
 
-class Price {
+export class Search {
+  page_size!: number;
+  page_index!: number;
+  keywords!: string;
+  category_id!: string;
+  brand!: string;
+  rating!: number;
+  price_min!: number;
+  price_max!: number;
+  sort_by!: "rating" | "price" | "isse_date" | "title";
+  sort_direction!: "asc" | "desc";
+}
+
+export class Price {
   current!: number;
   currency!: string;
   beforeDiscount!: number;
   discountPercentage!: number;
 }
+

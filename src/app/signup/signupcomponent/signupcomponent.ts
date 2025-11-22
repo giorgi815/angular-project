@@ -1,47 +1,50 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
 import { SignupData } from '../signup';
-import { Services } from '../../apiservices/services';
+import { Route, Router } from '@angular/router';
+import { Api } from '../../services/apiservices';
+import { AuthSignal } from '../../services/authsignal';
 
 @Component({
   selector: 'app-signupcomponent',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule,FormsModule],
   templateUrl: './signupcomponent.html',
   styleUrl: './signupcomponent.scss',
 })
 export class Signupcomponent {
-  signupForm: FormGroup;
-
-
-
-  constructor(private fb: FormBuilder, private api: Services) {
-    this.signupForm = this.fb.group({
-      firstName : ['', Validators.required],
-      lastName : ['',Validators.required],
-      age : [null, [Validators.required, Validators.min(1)]],
-      email : ['', [Validators.required, Validators.email]],
-      password : ['', [Validators.required, Validators.minLength(6)]],
-      address : [''],
-      phone : [''],
-      zipcode : [''],
-      avatar : [''],
-      gender : ['MALE', Validators.required]
-    });
-  }
-
-
-
-  onSubmit() {
-    if (this.signupForm.valid) {
-      const formData : SignupData = this.signupForm.value;
-      console.log('Form submited', formData)
-      this.api.postObject('https://api.everrest.educata.dev/auth/sign_up',{
-         
-      })
-    }
-  }
-
   
+  constructor(private api: Api, private route: Router, private auth : AuthSignal){}
+
+
+  signUp(signupform : any){
+    console.log(signupform.value);
+
+    this.api.postObject(`https://api.everrest.educata.dev/auth/sign_up`,signupform.value).subscribe({
+      next: (resp: any) =>{
+        console.log(resp)
+        console.log(signupform.value)
+        this.route.navigateByUrl('/login')
+        this.api.postObject(`https://api.everrest.educata.dev/auth/verify_email`,
+          signupform.value.email
+          
+        ).subscribe({
+          next: (resp: any) => {
+            console.log(resp)
+          },
+          error: (error) => {
+            console.log(error)
+          }
+        })
+      },
+      error: (er) => {
+        console.log(er)
+      }
+    })
+
+
+  }
+
+
   
 
 }

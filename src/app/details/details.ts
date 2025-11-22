@@ -1,8 +1,9 @@
-import { CommonModule, ɵnormalizeQueryParams } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { ActivatedRoute, Route, Router } from '@angular/router';
-import { Services } from '../apiservices/services';
+import { ActivatedRoute } from '@angular/router';
 import { SingleProduct } from '../models/productid';
+import { Api } from '../services/apiservices';
+import { signalGetFn } from '@angular/core/primitives/signals';
 
 @Component({
   selector: 'app-details',
@@ -13,8 +14,9 @@ import { SingleProduct } from '../models/productid';
 export class Details {
 
   id! : string
+  productId!: SingleProduct
 
-  constructor( private api: Services ,private activatedroute : ActivatedRoute) {
+  constructor( private api: Api ,private activatedroute : ActivatedRoute) {
     this.activatedroute.params.subscribe(data => {
       console.log(data["id"])
       this.id = data["id"]
@@ -31,12 +33,32 @@ export class Details {
     })
   }
 
-  
-  showMore(){
-    
+  cartProducts(){
+    this.api.getAll('https://api.everrest.educata.dev/shop/cart').subscribe(resp => {
+      console.log(resp)
+    })
   }
 
-  productId: SingleProduct= new SingleProduct
+
+  cartPost(){
+    this.api.postObject("https://api.everrest.educata.dev/shop/cart/product",{
+      id: this.id,
+      quantity: 1
+    }).subscribe((resp: any) => {
+        console.log(resp)
+    })
+  }
+  
+  
+  cartPatch(){
+    this.api.patch('https://api.everrest.educata.dev/shop/cart/product',{
+      id: this.id,
+      quantity: 1
+    }).subscribe((resp: any) => {
+      console.log(resp)
+    })
+  }
+  
   
 
 }
