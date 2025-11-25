@@ -1,24 +1,26 @@
 
-
-  <input [(ngModel)]="keywords"  type="text" placeholder="keywords">
+<div class="searchbar">
+    <input [(ngModel)]="keywords"  type="text" placeholder="keywords">
   <input [(ngModel)]="categoryId"  type="text" placeholder="category_id">
   <input [(ngModel)]="brand" type="text" placeholder="brand">
   <input [(ngModel)]="rating" type="number" placeholder="rating">
   <input [(ngModel)]="priceMin" type="number" placeholder="price_min">
   <input [(ngModel)]="priceMax" type="number" placeholder="price_max">
-  <select [(ngModel)]="sortBy">
+  <select class="select" [(ngModel)]="sortBy">
     <option value="" selected>--</option>
     <option value="rating">rating</option>
     <option value="price">price</option>
     <option value="issue_date">issue_date</option>
     <option value="title">title</option>
   </select>
-  <select [(ngModel)]="sortDirection">
+  <select class="select" [(ngModel)]="sortDirection">
     <option value="--" selected>--</option>
     <option value="asc">asc</option>
     <option value="desc">desc</option>
   </select>
   <button (click)="onSubmit()">search</button>
+</div>
+
 
 
 

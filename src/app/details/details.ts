@@ -1,20 +1,33 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { SingleProduct } from '../models/productid';
 import { Api } from '../services/apiservices';
-import { signalGetFn } from '@angular/core/primitives/signals';
 
 @Component({
   selector: 'app-details',
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './details.html',
   styleUrl: './details.scss',
 })
 export class Details {
 
+  Pluse = 1
+
+pluse(){
+  this.Pluse ++
+}
+
+
+
+
+minus(){
+  this.Pluse --
+}
+
   id! : string
   productId!: SingleProduct
+  container = false
 
   constructor( private api: Api ,private activatedroute : ActivatedRoute) {
     this.activatedroute.params.subscribe(data => {
@@ -33,32 +46,31 @@ export class Details {
     })
   }
 
-  cartProducts(){
-    this.api.getAll('https://api.everrest.educata.dev/shop/cart').subscribe(resp => {
-      console.log(resp)
-    })
-  }
 
 
-  cartPost(){
-    this.api.postObject("https://api.everrest.educata.dev/shop/cart/product",{
-      id: this.id,
-      quantity: 1
-    }).subscribe((resp: any) => {
+addTocart(){
+  this.api.getAll(`https://api.everrest.educata.dev/shop/cart`).subscribe({
+    next: (resp : any)=> {
+      this.api.patch(`https://api.everrest.educata.dev/shop/cart/product`,{
+        id: this.id,
+        quantity: this.Pluse
+      }).subscribe((resp : any) =>{
         console.log(resp)
-    })
-  }
-  
-  
-  cartPatch(){
-    this.api.patch('https://api.everrest.educata.dev/shop/cart/product',{
-      id: this.id,
-      quantity: 1
-    }).subscribe((resp: any) => {
-      console.log(resp)
-    })
-  }
-  
-  
+      })
+    },
+    error: (error)=>{
+      if(error == 409){
+        this.api.postObject(`https://api.everrest.educata.dev/shop/cart/product`,{
+          id: this.id,
+          quantity: this.Pluse
+        }).subscribe((resp : any) => {
+          console.log(resp)
+        })
+      }
+    }
+  })
+}
+
+
 
 }

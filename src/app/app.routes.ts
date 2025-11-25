@@ -12,7 +12,7 @@ export const routes: Routes = [
     loadComponent : () => import("./main/main").then(com => com.Main),
   },
   {
-    path : "cart/:id",
+    path : "cart",
     loadComponent : () => import("./cart/cart").then(com => com.Cart),
     canActivate: [authGuard]
   },

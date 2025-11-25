@@ -1,34 +1,48 @@
-.signup {
+form {
+  width: 400px;
+  margin: 41px auto;
+  padding: 30px 25px;
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 4px 22px rgba(0, 0, 0, 0.315);
   display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  background-image: url(/src/pics/a\ majestic\ hero\ stan.png);
-  background-position: center;
-  background-size: 100%;
-  form{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 5px;
-    width: 50%;
-    border-radius: 10px;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-    background-color: rgb(176, 208, 238);
-    input{
-      border-radius: 5px;
-      border: none;
-      width: 250px;
-      height: 30px;
+  flex-direction: column;
+  gap: 16px;
+
+  input,
+  select {
+    padding: 12px 14px;
+    border: 1px solid #d4d4d4;
+    border-radius: 8px;
+    font-size: 15px;
+    outline: none;
+    transition: 0.25s ease;
+
+    &:focus {
+      border-color: #007bff;
+      box-shadow: 0 0 4px rgba(0, 123, 255, 0.4);
     }
-    input::placeholder{
-      color: rgba(20, 20, 20, 0.911);
-      font-family: "Space Grotesk", sans-serif;
-      font-optical-sizing: auto;
-      font-size: 12px;
-      padding: 5px;
-      font-style: normal;
+  }
+
+  select {
+    background: #fff;
+    cursor: pointer;
+  }
+
+  button {
+    margin-top: 10px;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background: #9ebce0;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.25s ease;
+
+    &:hover {
+      background: #4f90e0;
     }
   }
 }

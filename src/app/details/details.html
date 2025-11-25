@@ -17,8 +17,22 @@
     <p>{{productId.title}}</p>
     <p></p>
     <p></p>
-    <button (click)="cartPatch()" class="btn btn-primary">Add to cart</button>
+    <div class="pluseminus">
+      <button (click)="pluse()">+</button>
+      <button (click)="minus()">-</button>
+      <p>{{Pluse}}</p>
+    </div>
+    <button (click)="addTocart()" class="btn btn-primary">Add to cart</button>
   </div>
 </div>
+</div>
+}
+
+@if(container){
+<div class="popup">
+  <div class="overlay">
+    <a routerLink="/signupcomponent">Signup</a>
+    <a routerLink="/login">Log in</a>
+  </div>
 </div>
 }

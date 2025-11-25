@@ -9,7 +9,8 @@ export class AuthSignal {
 
   
 
-  isAuthorised = signal(false)
+ isAuthorised = signal<boolean>(!!localStorage.getItem('access'));
+  
 
   
 

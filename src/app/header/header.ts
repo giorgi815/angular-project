@@ -24,7 +24,7 @@ export class Header {
     isAuth= signal(false)
 
    logout(){
-     localStorage.removeItem('access')
+      localStorage.removeItem('access')
       localStorage.removeItem('refresh')
       this.auth.logout()
   }

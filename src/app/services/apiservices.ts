@@ -36,14 +36,20 @@ export class Api {
     }))
   }
 
-  deleteObject(url : string) {
-    return this.http.delete(url)
+  deleteObject(url: string, obj?: any) {
+    const token = localStorage.getItem('access');
+    return this.http.request('delete', url, {
+      body: obj,
+      headers: new HttpHeaders({
+        Authorization: `Bearer ${token}`
+      })
+    });
   }
-
+  
   patch(url : string, obj: any){
 
   let token = localStorage.getItem('access')
-
+  
   return this.http.patch(url,obj, {
     headers: new HttpHeaders({
       Authorization: `Bearer ${token}`
