@@ -2,13 +2,18 @@
   @for(el of cartProducts.products; track el){
   <div class="card" style="width: 18rem;">
   <img [src]="" class="card-img-top" alt="...">
-  <div class="">
+  <div class="card-body">
+    <div  class="qr"></div>
     <h5 class="card-title">{{el.pricePerQuantity}}</h5>
     <p class="card-text">{{el.beforeDiscountPrice}}</p>
     <p>{{el.quantity}}</p>
-    <button (click)="deleteId(el.productId)" class="btn btn-danger">Delete</button>
+    <div class="buttons">
+      <button (click)="deleteId(el.productId)" class="btn btn-danger">Delete</button>
+      <button (click)="checkOut()" class="btn btn-success">Check out</button>
+    </div>
   </div>
 </div>
 }
 
 
+<img width="50px" height="50px" [src]="qrimage" alt="">

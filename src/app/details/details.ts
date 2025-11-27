@@ -59,7 +59,7 @@ addTocart(){
       })
     },
     error: (error)=>{
-      if(error == 409){
+      if(error){
         this.api.postObject(`https://api.everrest.educata.dev/shop/cart/product`,{
           id: this.id,
           quantity: this.Pluse

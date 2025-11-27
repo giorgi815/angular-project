@@ -73,5 +73,31 @@ export class Cart {
     })
   }
 
+  bl? : boolean
+
+  checkOut(){
+    this.api.postObject("https://api.everrest.educata.dev/shop/cart/checkout",{
+      access: localStorage.getItem('token'),
+      refresh: localStorage.getItem('refresh')
+    }).subscribe(({
+      next: (resp: any) => {
+        console.log(resp)
+      },
+      error: (error) => {
+        console.log(error)
+      }
+    }))
+  }
+
+  qrimage!: string
+
+  code(prod: string){
+    this.api.postObject("https://api.everrest.educata.dev/qrcode/generate",{
+      text: prod
+    }).subscribe((resp :any) => {
+      console.log(resp)
+      this.qrimage = resp.result
+    })
+  }
 
 }
